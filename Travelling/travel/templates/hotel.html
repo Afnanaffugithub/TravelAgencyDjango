@@ -1,0 +1,208 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hotel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/hotel.css' %}">
+</head>
+<body>
+
+    
+    <header>
+    
+        <a href="/" class="logo"><img src="{% static '/images/logo2.png' %}" alt=""style="width: 250px;height: 40px;"></a>
+    
+    <nav class="navbar">
+        <ul>
+    
+            <li> <a data-scroll="flights" href="/flight/"> flights</a></li>
+            <li><a data-scroll="hotels" href="/hotel/"> hotels</a></li>
+            <li><a data-scroll="Trains" href="/train/"> Trains</a></li>
+            <li><a data-scroll="buses" href="/bus/"> buses</a></li>
+            <li><a data-scroll="cabs" href="/cab/"> cabs</a></li>
+            <li><a data-scroll="contact" href="{% url 'home' %}"> contact</a></li>
+        
+        
+               
+        </ul>
+            </nav> 
+                 
+    </header>
+
+    <section class="front">
+        <div class="image">
+            <img src="{% static 'images/hotel/hotelfront.jpg' %}" alt="">
+        </div>
+
+        <div class="content">
+            <h3>Book your stay</h3>
+            <p> a commercial establishment that provides lodging, meals, and other services to guests, travelers, and tourists.</p>
+            <a href="#" class="btn">explore now</a>
+
+        </div>
+    </section>
+
+
+    <section class="from-container">
+        
+        <form action="{% url 'hotel' %}" method="post">
+            {% csrf_token %}
+           
+            <div class="inputbox">
+                <span class="list">City/Property name</span>
+                <select  id="input-group" name="hotelname" style="background: #fff;">
+                    <option value="">---</option>
+                    {% for ht in hotl  %}
+                    <option value="{{ ht.City_name }}">{{ ht.City_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="inputbox">
+                <span>Check In</span>
+                <input type="date"  name="idate">
+            </div>
+
+            <div class="inputbox">
+                <span>Check Out</span>
+                <input type="date"  name="odate">
+            </div>
+
+            <div class="inputbox">
+                <span class="list">Room Type</span>
+                <select  id="input-group" name="rooms" style="background: #fff;">
+                    <option value="">---</option>
+                    <option value="Ac Room">Ac Room</option>
+                    <option value="Non Ac Room">Non Ac Room</option>
+                   
+                   
+                </select>
+            </div>
+
+            <div class="inputbox">
+                <span>adults</span>
+                <input type="text" placeholder="No.of adults" name="adults">
+            </div>
+
+            <div class="inputbox">
+                <span>childs</span>
+                <input type="text" placeholder="No.of children" name="child">
+            </div>
+
+           <div class="inputbox">
+                    <span class="list">Price Per Night</span>
+                    <select  id="input-group" name="price" style="background: #fff;">
+                    <option value="">---</option>
+                    <option value="1500">1500Rs.</option>
+                    <option value="2000">2000Rs.</option>
+                    <option value="2500">2500Rs.</option>
+                    <option value="3000">3000Rs.</option>
+                    <option value="3500">3500Rs.</option>
+                    <option value="5000">5000Rs.</option>
+                    <option value="9000">9000Rs.</option>
+                    </select>
+                </div>
+
+            <a href="/" ></a><button type="submit" class="btn">Book now</button></a>
+
+            
+            <ol style="font-size:1.5rem;"><b><span style="color:red;">Note: </span></b>
+            <li>Ac room price started at rs.3000</li>
+            <li>In one room two persons only</li>
+            </ol> 
+        </form>
+    </section>
+
+    <section class="feature" id="feature">
+
+        <h1 class="heading"><span>Offers</span></h1>
+        
+        <div class="card-container">
+        
+            <div class="card">
+                
+                
+                <img src="{% static 'images/hotel/cabins.jpg' %}" alt="">
+                <div class="content">
+                    <h6 class="title">Get FLAT 20% savings*+EXTRA 5% on select cards</h6>
+                    <p>Enjoy memorable stay</p>
+                  <a href="#" class="btns">apply</a>
+                </div>
+            </div>
+        
+            <div class="card">
+                
+               
+                <img src="{% static 'images/hotel/h2.jpg' %}" alt="">
+                <div class="content">
+                    <h6 class="title">Enjoy up to 40% OFF*</h6>
+                    <p>On welcom Heritage Hotels, Valid from 1st to 31st july</p>
+                  <a href="#" class="btns">apply</a>
+                </div>
+            </div>
+    
+            <div class="card">
+                
+               
+                <img src="{% static 'images/hotel/h3.jpg' %}" alt="">
+                <div class="content">
+                    <h6 class="title">Presenting long weekend Homestay Mania:</h6>
+                    <p>Grab up to 30% OFF* on homestay, for wow stays this long weekend</p>
+                  <a href="#" class="btns">apply</a>
+                </div>
+            </div>
+    
+            <div class="card">
+                
+               
+                <img src="{% static 'images/hotel/h4.jpg' %}" alt="">
+                <div class="content">
+                    <h6 class="title">Grab FLAT 14% OFF* on3,4 and 5-stars stays in india</h6>
+                    <p>Treat yourself to a refreshing, luxiories braek</p>
+                    <a href="#" class="btns">apply</a>
+                </div>
+            </div>
+        
+        </div>
+        
+        </section>
+       
+    
+        
+
+    <section class="newsletter">
+
+        <h1>sign up with your Email</h1>
+        
+        <p>To know the more information of your booking</p>
+        
+        <form action="">
+            <input type="email" placeholder="enter your email">
+            <input type="submit" value="sign up">
+        </form>
+        
+        </section>
+        
+    
+    
+    <section class="footer">
+        
+        <h1 class="credit">created by <span>afnan</span> | all rights reserved.</h1>
+        
+        <div class="icons">
+            <a href="https://www.facebook.com/" target="_blank" ><i class="fab fa-facebook-f"></i> </a>
+            <a href="https://twitter.com/home" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/af.travels9938/" target="_blank"><i class="fab fa-instagram"></i></a>
+            
+        </div>
+        
+        </section>
+    
+    
+</body>
+</html>

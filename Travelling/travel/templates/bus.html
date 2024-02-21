@@ -1,0 +1,256 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flight front</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/bus.css' %}">
+</head>
+<body>
+
+    <header>
+    
+        <a href="/" class="logo"><img src="{% static '/images/logo2.png' %}" alt=""style="width: 250px;height: 40px;"></a>
+    
+    <nav class="navbar">
+        <ul>
+    
+            <li> <a data-scroll="flights" href="/flight/"> flights</a></li>
+            <li><a data-scroll="hotels" href="/hotel/"> hotels</a></li>
+            <li><a data-scroll="Trains" href="/train/"> Trains</a></li>
+            <li><a data-scroll="buses" href="#"> buses</a></li>
+            <li><a data-scroll="cabs" href="/cab/"> cabs</a></li>
+            <li><a data-scroll="contact" href="{% url 'home' %}"> contact</a></li>
+        
+        
+               
+        </ul>
+            </nav> 
+                 
+    </header>
+    
+    <section class="front">
+        <div class="image">
+            <img src="{% static 'images/bus/busbg.jpg' %}" alt="">
+        </div>
+
+        <div class="content">
+            <h3>Book bus tickets</h3>
+            <p>The most important part of any trip is planning because if you plan well, you are sure to enjoy your trip better. And online bus bookings allow you just that. You can check for bus routes to your destination</p>
+            <a href="#" class="btn">explore now</a>
+
+        </div>
+    </section>
+
+    <section class="from-container">
+
+        <form action="{% url 'bus' %}" method="post">
+            {% csrf_token %}
+
+
+            <div class="inputbox">
+                <span class="list">From</span>
+                <select  id="input-group" name="from" style="background: #fff;">
+                    <option value="">---</option>
+                        {% for frbs in Frombs  %}
+                        <option value="{{ frbs.City_name }}">{{ frbs.City_name }}</option>
+                        {% endfor %}
+                </select>
+            </div>
+
+            
+            <div class="inputbox">
+                <span class="list">To</span>
+                <select  id="input-groups" name="to" style="background: #fff;" onchange="get_amountto(this)">
+                    <option value="">---</option>
+                    {% for tobs in Tobs  %}
+                    <option value="{{ tobs.price }}">{{ tobs.City_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="inputbox">
+                <span>Travel Date</span>
+                <input type="date"  name="ddate">
+            </div>
+
+            <div class="inputbox">
+                <span>Travellers</span>
+                <input type="text" id="busmem" placeholder="No.of travellers" name="adult" onchange="get_amt()" style="width:35rem;">
+            </div>
+
+            <div class="inputbox">
+                <span class="list">Class</span>
+                <select  id="inputgroup" name="seat" style="background: #fff;width:35rem;" onchange="get_amount(this)">
+                    <option value="">---Select Class---</option>
+                    {% for bc in bus %}
+                    <option value="{{ bc.bus_price }}">{{ bc.bus_class }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="inputbox">
+                <span>Amount</span>
+                <input type="text" id="amount" placeholder="Total Amount" name="amount" >
+            </div>
+
+            
+            
+            <button type="submit" class="btn">Book now</button>
+
+        </form>
+    </section>
+
+    
+    
+    <section class="feature" id="feature">
+
+        <h1 class="heading"><span>Buses</span> through</h1>
+        
+        <div class="card-container">
+        
+            <div class="card">
+            
+                <img src="{% static 'images/bus/chennaifly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Buses From Chennai To</h3>
+                      <p>Bangalore, Coimbatore, Madurai, Hyderabad, Trichy </p>
+                </div>
+            </div>
+
+            
+            <div class="card">
+            
+                <img src="{% static 'images/bus/Delhifly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Buses From Delhi To</h3>
+                      <p>Lucknow, Dehradun, Manali, Kanpur, Jaipur</p>
+                </div>
+            </div>
+
+            
+            <div class="card">
+            
+                <img src="{% static 'images/bus/Bangalorefly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Buses From Bangalore To</h3>
+                      <p>Chennai, Hyderabad, Coimbatore, Mumbai, Goa</p>
+                </div>
+            </div>
+
+            
+            <div class="card">
+            
+                <img src="{% static 'images/bus/kolkotafly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Buses From Kolkata To</h3>
+                      <p>Durgapur, Asansol, Siliguri, Bhubaneshwar, Bardhaman</p>
+                </div>
+            </div>
+
+            <div class="card">
+            
+                <img src="{% static 'images/bus/Jaipurfly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Buses From Ahmedabad To</h3>
+                      <p>Mumbai, Rajkot, Surat, Pune, Indore</p>
+                </div>
+            </div>
+
+            <div class="card">
+            
+                <img src="{% static 'images/bus/hyderabadfly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Buses From Coimbatore To</h3>
+                      <p>Chennai, Bangalore, Madurai, Pondicherry, Nagercoil</p>
+                </div>
+            </div>
+
+            <div class="card">
+            
+                <img src="{% static 'images/bus/Mumbaifly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Buses From Mumbai To</h3>
+                      <p>Bangalore, Goa, Pune, Indore, Ahmedabad</p>
+                </div>
+            </div>
+
+            <div class="card">
+            
+                <img src="{% static 'images/bus/Punefly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Buses From Pune To</h3>
+                      <p>Goa, Bangalore, Nagpur, Hyderabad, Mumbai</p>
+                </div>
+            </div>
+
+            <div class="card">
+            
+                <img src="{% static 'images/bus/hyderabadfly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Buses From Hyderabad To</h3>
+                      <p>Bangalore, Chennai, Mumbai, Pune, Vijayawada</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="newsletter">
+
+        <h1>sign up with your Email</h1>
+        
+        <p>To know the more information of your booking</p>
+        
+        <form action="">
+            <input type="email" placeholder="enter your email">
+            <input type="submit" value="sign up">
+        </form>
+        
+        </section>
+        
+        <section class="footer">
+        
+        <h1 class="credit">created by <span>afnan</span> | all rights reserved.</h1>
+        
+        <div class="icons">
+            <a href="https://www.facebook.com/" target="_blank" ><i class="fab fa-facebook-f"></i> </a>
+            <a href="https://twitter.com/home" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/af.travels9938/" target="_blank"><i class="fab fa-instagram"></i></a>
+            
+        </div>
+        
+        </section>
+    
+        <script>
+            function get_amount(el){
+                var toamount = document.getElementById('input-groups').value;
+                var travel = document.getElementById('busmem').value;      
+                var inputgroup = el.value;
+                let amt = parseInt(travel) * parseInt(inputgroup);
+                amount.value = amt + parseInt(toamount);
+            }
+    
+            function get_amountto(el){
+                var toamount = el.value;
+                var travel = document.getElementById('busmem').value;      
+                var inputgroup = document.getElementById('inputgroup').value;
+                let amt = parseInt(travel) * parseInt(inputgroup);
+                amount.value = amt + parseInt(toamount);
+            }
+    
+            function get_amt(){
+                var toamount = document.getElementById('input-groups').value;
+                var travel = document.getElementById('busmem').value;      
+                var inputgroup = document.getElementById('inputgroup').value;
+                let amt = parseInt(travel) * parseInt(inputgroup);
+                amount.value = amt + parseInt(toamount);
+            }
+        </script>
+</body>
+</html>

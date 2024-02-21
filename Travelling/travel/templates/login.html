@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+	{% for message in messages %}
+	{% if message %}
+		<h3 class="message"> {{message}}</h1>
+	{% endif %}
+	{% endfor %}
+
+	<section class="home" id="home">
+    <div class="video">
+        <video src="{% static 'images\home-video.mp4' %}" loop muted autoplay></video>
+    </div>
+
+	<div class="content">
+		<h1>explore new places,</h1>
+		<p>Travel is the opportunity to explore your favorite destinations while discovering new skills, passions, and with lifelong friends</p>
+	</div>
+
+    <div class="form-container">
+        <form method="post">
+			{% csrf_token %}
+		
+			<h2>Sign in</h2>
+			<div class="inputBox">
+                <span>Username</span>
+				<input type="text"  required="required"  placeholder="Enter username" name="Username">
+			</div>
+			<div class="inputBox">
+                <span>Password</span>
+				<input type="password" required="required"placeholder="your password" name="Password">
+			</div>
+
+			<div class="links">
+				<a href="#" style="padding-left:8rem;">Forget password</a>
+			</div>
+
+			<input type="submit" value="Login">
+
+			<a href="/register/" class="btn">REGISTER</a>
+		</form>
+	</div>
+</section>
+</body>
+</html>

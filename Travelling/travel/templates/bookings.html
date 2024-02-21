@@ -1,0 +1,311 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+<style>
+    header{
+        position: fixed;
+        top: 0; left: 0;right: 0;
+        background: #fff;
+        box-shadow: #aaa;
+        padding: 1.5rem 7%;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+    header .logo{
+        color:#333;
+        font-size: 1.5rem;
+       
+      }
+      
+      
+    header .logo span{
+        color:#0098a1;
+        font-size: 1.5rem;
+        
+      }
+    a{
+        text-decoration: none;
+    }
+      
+</style>
+</head>
+<body>
+        
+<header>
+    
+    <a href="/" class="logo"><img src="{% static '/images/logo2.png' %}" alt=""style="width: 250px;height: 40px;"></a>
+
+</header>
+     <div class="container" style="margin-top:100px;margin-bottom:20px;">
+        <h3>Packages</h3>
+        {% for b in book %}
+        <div class="card" style="padding:20px; margin-bottom:20px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="{{ b.package_name.package_image.url }}" alt="" style="width:60px; height:60px;border-radius:.7rem;">
+                        </div>
+                        <div class="col-md-6">
+                            <h5> {{ b.package_name.package_name }} </h5>
+                            <h6> {{ b.package_name.package_price }} </h6>
+                        </div>
+                        <div class="col-md-4">
+                            <p> Discount - {{ b.package_name.package_discount }} off</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <p> {{ b.package_mobNo }} </p>
+                                </div>
+                                <div class="col-md-7">
+                                    <h6>Guest Member - <b>{{ b.package_guestmember }}</b> </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ b.package_leaving }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+     </div>
+
+     <!-- flights strat -->
+
+     <div class="container" style="margin-top:20px;margin-bottom:20px;">
+        <h3>Flights</h3>
+        {% for b in Flight %}
+        <div class="card" style="padding:20px; margin-bottom:20px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="{% static 'images/flight/flightbooking.jpg' %}" alt="" style="width:60px; height:60px;border-radius:.7rem;">
+                        </div>
+                        <div class="col-md-7">
+                            <h5>From:  {{ b.flight_fromd }} </h5>
+                            <h5>To:  {{ b.flight_tod }} </h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>Amount - {{ b.flight_amount }} </h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h6>Class: {{ b.flight_classs }} </h6>
+                                </div>
+                                <div class="col-md-7">
+                                    <h6>Flight Trip: {{ b.flight_trip }}</b> </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Departure: {{ b.flight_ddate }}</h6>
+                            <h6>Airline: {{ b.flight_arival }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+     </div>
+
+    <!-- flights end -->
+
+
+    <!-- trains strat -->
+
+    <div class="container" style="margin-top:20px;margin-bottom:20px;">
+        <h3>Trains</h3>
+        {% for b in train %}
+        <div class="card" style="padding:20px; margin-bottom:20px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="{% static 'images/train/trainbooking.jpg' %}" alt="" style="width:60px; height:60px;border-radius:.7rem;">
+                        </div>
+                        <div class="col-md-6">
+                            <h5>From:  {{ b.train_jfrom }} </h5>
+                            <h5>To:  {{ b.train_jto }} </h5>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Amount - {{ b.train_amount }} </h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h6>Class: {{ b.train_class }} </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Date: {{ b.train_date }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+     </div>
+
+    <!-- trains end -->
+
+    <!-- bus strat -->
+
+    <div class="container" style="margin-top:20px;margin-bottom:20px;">
+        <h3>Buses</h3>
+        {% for b in Bus %}
+        <div class="card" style="padding:20px; margin-bottom:20px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="{% static 'images/bus/busbooking.jpg' %}" alt="" style="width:60px; height:60px;border-radius:.7rem;">
+                        </div>
+                        <div class="col-md-6">
+                            <h5>From:  {{ b.bus_jfrom }} </h5>
+                            <h5>To:  {{ b.bus_jto }} </h5>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Amount - {{ b.bus_amount }} </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h6>Class: {{ b.bus_class }} </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Date: {{ b.bus_date }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+     </div>
+
+    <!-- bus end -->
+
+    <!-- cab strat -->
+
+    <div class="container" style="margin-top:20px;margin-bottom:20px;">
+        <h3>Cabs</h3>
+        {% for b in Cab %}
+        <div class="card" style="padding:20px; margin-bottom:20px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="{% static 'images/bus/cabbooking.webp' %}" alt="" style="width:60px; height:60px;border-radius:.7rem;">
+                        </div>
+                        <div class="col-md-6">
+                            <h5>From:  {{ b.cab_from }} </h5>
+                            <h5>To:  {{ b.cab_to }} </h5>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Car: {{ b.Cars_Price }} </h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Departure: {{ b.cab_departuredate }}</h6>
+                            <h6>Pick up: {{ b.cab_pickuptime }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+     </div>
+
+    <!-- cab end -->
+
+    <!-- hotel strat -->
+
+    <div class="container" style="margin-top:20px;margin-bottom:20px;">
+        <h3>Hotels</h3>
+        {% for b in Hotel %}
+        <div class="card" style="padding:20px; margin-bottom:20px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="{% static 'images/hotel/hotelbooking.webp' %}" alt="" style="width:60px; height:80px;border-radius:.7rem;">
+                        </div>
+                        <div class="col-md-7">
+                            <h5>Hotel:  {{ b.hotel_cityorproprty }} </h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h6>Amount - {{ b.hotel_price }} </h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h6>No. of Rooms: {{ b.hotel_rooms }} </h6>
+                                </div>
+                                <div class="col-md-7">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Check In: {{ b.hotel_checkin }}</h6>
+                            <h6>Check Out: {{ b.hotel_checkout }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+     </div>
+
+    <!-- hotel end -->
+
+</body>
+</html>

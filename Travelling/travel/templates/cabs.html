@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flight front</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/cabs.css' %}">
+</head>
+<body>
+
+    <header>
+    
+        <a href="/" class="logo"><img src="{% static '/images/logo2.png' %}" alt=""style="width: 250px;height: 40px;"></a>
+    
+    <nav class="navbar">
+        <ul>
+    
+            <li> <a data-scroll="flights" href="/flight/"> flights</a></li>
+            <li><a data-scroll="hotels" href="/hotel/"> hotels</a></li>
+            <li><a data-scroll="Trains" href="/train/"> Trains</a></li>
+            <li><a data-scroll="buses" href="/bus/"> buses</a></li>
+            <li><a data-scroll="cabs" href="#"> cabs</a></li>
+            <li><a data-scroll="contact" href="{% url 'home' %}"> contact</a></li>
+        
+        
+               
+        </ul>
+            </nav> 
+                 
+    </header>
+    
+    <section class="front">
+        <div class="image">
+            <img src="{% static 'images/bus/cabbg.jpg' %}" alt="">
+        </div>
+
+        <div class="content">
+            <h3>Book cab</h3>
+            <p>One can simply make an online cab booking and travel to any part of the country. As more offbeat places are coming to limelight, travel enthusiasts are constantly in a rush to explore those hidden gems.</p>
+            <a href="#" class="btn">explore now</a>
+
+        </div>
+    </section>
+
+    <section class="from-container">
+
+        <form action="{% url 'cab' %}" method="post">
+            {% csrf_token %}
+
+
+                <div class="inputbox">
+                    <span class="list">From</span>
+                    <select  id="input-group" name="from" style="background: #fff;">
+                        <option value="">---</option>
+                        {% for frcb in Fromcb  %}
+                        <option value="{{ frcb.City_name }}">{{ frcb.City_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                
+                <div class="inputbox">
+                    <span class="list">To</span>
+                    <select  id="input-group" name="to" style="background: #fff;">
+                        <option value="">---</option>
+                        {% for tcb in Tocb  %}
+                        <option value="{{ tcb.City_name }}">{{ tcb.City_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+    
+
+            
+            <div class="inputbox">
+                <span>departure</span>
+                <input type="date"  name="ddate">
+            </div>
+
+            <div class="inputbox">
+                <span>Return</span>
+                <input type="date"  name="rdate">
+            </div>
+
+            <div class="inputbox">
+                <span>Pickup time</span>
+                <input type="time"  name="ptime">
+            </div>
+
+            <div class="inputbox">
+                <span class="list">Cars and Price</span>
+                <select  id="input-group" name="CP" style="background: #fff; width:39rem;">
+                    <option value="">---</option>
+                    {% for cp in CrPr  %}
+                    <option value="{{ cp.Car_Price }}">{{ cp.Car_Price }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            
+            
+            <button type="submit" class="btn">Book now</button>
+
+        </form>
+    </section>
+
+    <section class="feature" id="feature">
+
+        <h1 class="heading"><span>Cabs</span> through</h1>
+        
+        <div class="card-container">
+        
+            <div class="card">
+            
+                <img src="{% static 'images/bus/chennaifly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Cabs From Chennai To</h3>
+                      <p>Vellore, Pondicherry, Bangalore, Tirupati</p>
+                </div>
+            </div>
+
+            
+            <div class="card">
+            
+                <img src="{% static 'images/bus/Delhifly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Cabs From Delhi To</h3>
+                      <p>Agra, Jaipur, Dehradun, Haridwar, Chandigarh</p>
+                </div>
+            </div>
+
+            
+            <div class="card">
+            
+                <img src="{% static 'images/bus/Bangalorefly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Cabs From Bangalore To</h3>
+                      <p>Ooty, Madikeri, Coorg, Vellore</p>
+                </div>
+            </div>
+
+            
+            <div class="card">
+            
+                <img src="{% static 'images/bus/kolkotafly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Buses From Kolkata To</h3>
+                      <p>Durgapur, Asansol, Siliguri, Bhubaneshwar, Bardhaman</p>
+                </div>
+            </div>
+
+            <div class="card">
+            
+                <img src="{% static 'images/bus/Jaipurfly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Cabs From Jaipur To</h3>
+                      <p>New Delhi, Gurgaon, Noida, Faridabad, Ghaziabad</p>
+                </div>
+            </div>
+
+            <div class="card">
+            
+                <img src="{% static 'images/bus/chandiharh.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Cabs From Chandigarh To</h3>
+                      <p> New Delhi, Shimla, Manali, Gurgaon, Noida</p>
+                </div>
+            </div>
+
+            <div class="card">
+            
+                <img src="{% static 'images/bus/Mumbaifly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Cabs From Mumbai To</h3>
+                      <p>Pune, Nasik, Shirdi, Lonavala, Mahabaleshwar</p>
+                </div>
+            </div>
+
+            <div class="card">
+            
+                <img src="{% static 'images/bus/Punefly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Cabs From Pune To</h3>
+                        <p>Mumbai, Shirdi, Mahabaleshwar, Nasik, Aurangabad</p>
+                </div>
+            </div>
+
+            <div class="card">
+            
+                <img src="{% static 'images/bus/hyderabadfly.jpg' %}" alt="">
+                <div class="content">
+                    <h3 class="title">Cabs From Dehradun To</h3>
+                      <p>Mussoorie, New Delhi, Gurgaon, Noida, Faridabad</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+   
+
+    <section class="newsletter">
+
+        <h1>sign up with your Email</h1>
+        
+        <p>To know the more information of your booking</p>
+        
+        <form action="">
+            <input type="email" placeholder="enter your email">
+            <input type="submit" value="sign up">
+        </form>
+        
+        </section>
+        
+        <section class="footer">
+        
+        <h1 class="credit">created by <span>afnan</span> | all rights reserved.</h1>
+        
+        <div class="icons">
+            <a href="https://www.facebook.com/" target="_blank" ><i class="fab fa-facebook-f"></i> </a>
+            <a href="https://twitter.com/home" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/af.travels9938/" target="_blank"><i class="fab fa-instagram"></i></a>
+            
+        </div>
+        
+        </section>
+    
+    
+</body>
+</html>

@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+
+
+
+* {
+    box-sizing: border-box;
+    font-family: 'Rajdhani', sans-serif;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+
+  
+  header{
+    position: fixed;
+    top: 0; left: 0;right: 0;
+    background: #fff;
+    box-shadow: #aaa;
+    padding: 1.5rem 7%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  header .logo{
+    color:#333;
+    font-size: 1.5rem;
+   
+  }
+  
+  
+  header .logo span{
+    color:#0098a1;
+    font-size: 1.5rem;
+    
+  }
+  
+a{
+    text-decoration: none;
+}
+
+.container {
+    margin-top: -6rem;
+    background: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.box {
+    background-color: white;
+    border-radius: 10px;
+    /* box-shadow: 5px 5px 10px 1px rgb(0, 0, 0, 12%); */
+    padding: 45px;
+    margin: 15px 0;
+    width: 950px;
+    height: 20rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+    "images info"
+    "images description";
+    grid-gap: 35px;
+}
+
+.box .images {
+    grid-area: images;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+    "active active active"
+    "idle idle idle";
+    grid-gap: 5px;
+}
+
+.box .images .img-holder img {
+    width: 25rem;
+    height: 20rem;
+    display: block;
+    border-radius: 10px;
+}
+
+.box .images .img-holder.active {
+    grid-area: active;
+}
+
+
+.option img {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+  
+  }
+
+.box .images .img-holder:not(.active):hover {
+    opacity: 0.95;
+    cursor: pointer;
+}
+
+.box .basic-info {
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.box .basic-info .rate {
+    color: gold;
+}
+
+.box .basic-info span {
+    font-weight: 800;
+    font-size: 25px;
+}
+
+.box .basic-info .options a {
+    color: white;
+    background-color: var(--secondary-color);
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.box .basic-info .options a:hover {
+    background-color: var(--tertiary-color);
+}
+
+.description #input-group{
+    margin-left: 1rem;
+}
+
+.box .description {
+    grid-area: description;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1.2rem;
+}
+
+.box .description p {
+    color: var(--gray-color);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.box .description .features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--gray-color);
+}
+
+.box .description .features i {
+    margin-right: 5px;
+}
+
+.box .description .features .fa-circle-check {
+    color: var(--tertiary-color);
+}
+
+.box .description .features .fa-circle-xmark {
+    color: var(--yellow-color);
+}
+
+.box .description .social {
+    list-style: none;
+    display: flex;
+}
+
+.box .description .social a {
+    margin-right: 15px;
+    color: var(--gray-color);
+}
+
+.box .description .social a:hover {
+    color: var(--secondary-color);
+}
+
+
+
+.from-container form .note{
+    padding-top: 6rem;
+    margin-left: -55rem;
+}
+  
+.from-container form{
+    border-radius: .5rem;
+    padding-left: 0;
+    display: flex;
+    flex-wrap:nowrap;
+    gap: 1rem;
+    width: 15rem;
+    height: 30rem;
+  }
+  
+  .input3 #input-group{
+  
+    margin-right:10rem;
+    font-size: 2rem;
+    padding-bottom: 2rem;
+  
+  }
+  .from-container form .inputbox{
+    flex: 1 1 23rem;
+  }
+  
+  
+  .from-container form .inputbox span{
+    font-size: .9rem;
+    color: #000;
+  }
+  
+  .from-container form .inputbox input{
+    font-size: .9rem;
+    color: #000;
+    background: #fff;
+    border-radius: .5rem;
+    margin: .5rem 0;
+    text-transform: none;
+    width: 15rem;
+    height: 2rem;
+    padding: 1rem;
+    border: 1;
+    
+  }
+  
+  .from-container .btn{
+    font-size: .9rem;
+    padding:.5rem; margin-right:0 ;
+    margin-top: 1.5rem;
+    height:2rem;
+    width:8rem;
+    border-radius: .5rem;
+    
+    background: #575656;
+    color:#fff;
+    cursor: pointer;
+    transition: .2s linear;
+  }
+  
+  .from-container .btn:hover{
+    background: none;
+    border:.2rem solid #575656;
+    color:#000;
+    padding-left: 1rem;
+  }
+  
+@media (max-width: 991px) {
+    .box {
+        width: 750px;
+        grid-template-areas: 
+        "info info"
+        "images description";
+    }
+    .box .basic-info .options a {
+        padding: 8.5px 12px;
+    }
+}
+
+@media screen and (max-width: 991px) and (min-width: 769px) {
+    .box .basic-info span {
+        position: absolute;
+        align-self: flex-end;
+    }
+    .box .basic-info .options {
+        position: absolute;
+        align-self: flex-end;
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .box {
+        width: 600px;
+        grid-template-areas: 
+        "images info"
+        "description description";
+    }
+    .box .images {
+        gap: 3px;
+    }
+    .box .images .img-holder img {
+        border-radius: 5px;
+    }
+}
+
+@media (max-width: 640px) {
+    .box {
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        padding: 35px;
+        margin: 0;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
+        grid-template-areas: 
+        "images"
+        "info"
+        "description";
+    }
+}
+
+
+
+
+
+.wrapper {
+	background: var(--white);
+	padding: 2rem;
+	max-width: 576px;
+	width: 100%;
+	border-radius: .75rem;
+	box-shadow: var(--shadow);
+	text-align: center;
+}
+.wrapper h3 {
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+.rating {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-gap: .5rem;
+	font-size: 2rem;
+	color: var(--yellow);
+	margin-bottom: 2rem;
+}
+.rating .star {
+	cursor: pointer;
+}
+.rating .star.active {
+	opacity: 0;
+	animation: animate .5s calc(var(--i) * .1s) ease-in-out forwards;
+}
+
+@keyframes animate {
+	0% {
+		opacity: 0;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.2);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+
+.rating .star:hover {
+	transform: scale(1.1);
+}
+textarea {
+	width: 100%;
+	background:#eee;
+    box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.3);
+	padding: 1rem;
+	border-radius: .5rem;
+	border: none;
+	outline: none;
+	resize: none;
+	margin-bottom: .5rem;
+}
+.btn-group {
+	display: flex;
+	grid-gap: .5rem;
+	align-items: center;
+}
+.btn-group .btn {
+	padding: .75rem 1rem;
+	border-radius: .5rem;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	font-size: .875rem;
+	font-weight: 500;
+}
+.btn-group .btn.submit {
+	background:#0098a1;
+	color: #fff;
+}
+.btn-group .btn.submit:hover {
+	background: #fff;
+    color: #0098a1;
+    border:.1rem solid #0098a1;
+}
+.btn-group .btn.cancel {
+	background: var(--white);
+	color: var(--blue);
+}
+.btn-group .btn.cancel:hover {
+	background: var(--light);
+}

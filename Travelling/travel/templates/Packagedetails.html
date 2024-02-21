@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+  
+    <link rel="stylesheet" href="{% static 'css/Packagedetails.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <title>Product Details</title>
+</head>
+<body>
+
+    
+<header>
+    
+    <a href="/" class="logo"><img src="{% static '/images/logo2.png' %}" alt=""style="width: 250px;height: 40px;"></a>
+
+</header>
+    <div class="container">
+        <div class="box">
+            <div class="images">
+                <div class="img-holder active">
+                    <img src="{{ package.package_image.url }}" class="slide">
+                </div>
+                
+            </div>
+            <div class="basic-info">
+                <h1>{{ package.package_name }}</h1>
+                <div class="rate">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>{{ package.package_price }} rs.</span>
+                <span style="font-size:1rem;"> Per Person </span>
+            </div>
+            <div class="description">
+                <p> {{ package.package_description }} </p>
+                {% for v in vehicle %}
+                <a style="color:#00a150;">
+                    {{ v.vehicle_name }}</a>
+                    {% endfor %}
+                <a style="font-size:1rem; "><i class='fas fa-hotel'></i> 1 Hotel</a>
+                <div class="input" style="font-size:1.2rem;"><!--input3-->
+                    <input type="radio" id="input-groups"  value="One way" name="r" required="required">
+                    <label class="lbl" id="input-groups">With Flight <i class='fas fa-plane'></i></label>
+                    <input type="radio" id="input-group" value="Round way" name="r" required="required">
+                    <label class="lbl" id="input-groups">Without Flight <i class='fas fa-plane-slash'style="color:red;"></i></label>
+                </div>
+                
+            </div>
+                
+        <section class="from-container">
+
+            <div class="input3">
+                
+    
+          <form action="{% url 'packagebook' package.id %}" method="post">
+            {% csrf_token %}
+            
+            {% comment %} <span id="input-group" class="text-primary" style="color: #0098a1;">Book now</span> {% endcomment %}
+            
+            <div class="inputbox">
+              <span>Mobile No</span>
+              <input type="tel" placeholder="Enter mobile No" name="email">
+          </div>
+  
+          <div class="inputbox">
+              <span>Guest No</span>
+              <input type="number" placeholder="No of Guest" name="mobno">
+          </div>
+            
+            <div class="inputbox">
+                <span>Departure</span>
+                <input type="date"  name="date">
+            </div>
+           <input type="submit" class="btn" value="Book now">
+           <div class="note">
+           <a><span style="color:red;">Note:</span> You want Book Any other transpotation <a href="{% url 'cab' %}" style="color:#0098a1;"> <i class='fas fa-car'></i>CLICK HERE</a></a>
+        </div>     
+        </form>
+    </section>
+    
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

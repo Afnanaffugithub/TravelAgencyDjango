@@ -1,0 +1,351 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>travelling</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/travels.css' %}">
+
+</head>
+<body>
+
+<!-- header section starts  -->
+
+<header>
+    
+    <a href="/" class="logo"><img src="{% static '/images/logo2.png' %}" alt=""style="width: 250px;height: 40px;"></a>
+
+<nav class="navbar">
+    <ul>
+
+        <li> <a data-scroll="flights" href="/flight/"> flights</a></li>
+        <li><a data-scroll="hotels" href="/hotel/"> hotels</a></li>
+        <li><a data-scroll="services" href="#services"> our services</a></li>
+        <li><a data-scroll="package" href="#package"> packages</a></li>
+        <li><a data-scroll="about" href="#about"> about</a></li>
+        <li><a data-scroll="contact" href="#contact"> contact</a></li>
+        <li><a data-scroll="Bookings" href="{% url 'bookings' %}"> Bookings</a></li>
+    
+    
+           
+    </ul>
+        </nav> 
+        {% if user.is_authenticated %}
+        <a data-aos="zoom-in-left" data-aos-delay="1200" href="/logout/" class="btn">Logout</a>
+        {% else %}
+        <a data-aos="zoom-in-left" data-aos-delay="1200" href="/login/" class="btn"> Login</a>
+        {% endif %}       
+</header>
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+<div class="video">
+    <video src="{% static '/images/home-video.mp4' %}"  loop muted autoplay></video>
+</div>
+
+<div class="content">
+    <h1>explore new places, <br> adventure awaits.</h1>
+    <p>Travel is the opportunity to explore your favorite destinations while discovering new skills, passions, and with lifelong friends</p>
+</div>
+{% comment %} 
+{% if user.is_authenticated %}
+<div class="form-container">
+    <form method="post" action="/book-destination/">
+        {% csrf_token %}
+
+        <h3>Book your destination</h3>
+
+        <span>Name</span>
+        <input type="text" required="required" placeholder="Enter your name" name="names">
+
+        <span>Mob No.</span>
+        <input type="text" required="required"placeholder="Mobile Number" name="mobn">
+
+        <span>location</span>
+        <input type="text" required="required" placeholder="place you want to visit" name="location">
+
+        <span>guest members</span>
+        <input type="text" required="required" placeholder="number of peoples" name="guestmemb">
+
+       
+
+        <span>leaving</span>
+        <input type="date" required="required" name="leaved">
+
+        <input type="submit" value="BOOK">
+
+    </form>
+</div>
+{% endif %}  {% endcomment %}
+
+</section>
+
+<!-- home section ends -->
+
+
+
+<!-- about section starts  -->
+
+
+<section id="about" class="about">
+
+    <h1 class="heading"><span>a</span>bout <span>u</span>s</h1>
+    
+    <div class="row">
+    
+        <div class="image">
+            <img src="{% static 'images/about-img.png' %}" alt="">
+        </div>
+    
+        <div class="content">
+            <h3>why choose us?</h3>
+            <p>here is the all tickets of World tour when ever where ever you want go we book your destination. so why your waiting book it now...</p>
+            <p>luxury hotels</p><br>
+            <p>we have the best prices for tours, and a huge selection of destinations will not leave indifferent even avid tourist..</p>
+            
+            <a href="/login/"><button class="btn">get started</button></a>
+        </div>
+    
+    </div>
+    
+    </section>
+    
+    
+    <!-- about section ends -->
+
+
+<!-- package section starts  -->
+
+<section class="feature" id="package">
+
+<h1 class="heading"><span>P</span>ackages</h1>
+
+<div class="card-container">
+    {% for package in packages %}
+    <div class="card">
+        <span class="discount">{{ package.package_discount }}</span>
+       
+        <img src="{{ package.package_image.url }}" alt="">
+        <div class="content">
+            <h3 class="title">{{ package.package_name }}</h3>
+            <span class="duo">{{ package.no_of_person }} Person<br/> {{ package.package_price }} </span>
+            <p> {{ package.package_description }} </p>
+            <a href="{% url 'packagedetail' package.package_slug %}"><button class="btn">book now!</button></a>
+            {% comment %} <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div> {% endcomment %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</section>
+
+
+<!-- packagesection ends -->
+
+
+
+<!-- services section starts  -->
+
+<section id="services" class="services">
+    
+ <h1 class="heading"> our <span>services</span></h1>
+
+    <div class="box-container">
+        {% for services in service %}
+        <div class="box">
+            <span>{{ services.services_number }}</span>
+            <i class="fas fa-headset"></i>
+            <h3> {{ services.services_title }}</h3>
+            <p>{{ services.services_description }}</p>
+            
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+<!-- services section ends -->
+{% comment %} 
+<!-- review section starts  -->
+
+<section id="review" class="review">
+
+<h1 class="heading"><span>r</span>eview</h1>
+
+
+<div class="box-container">
+
+    <div class="box">
+        <div class="image">
+            <img src="{% static 'images\reviewboy.jpg' %}" alt="">
+        </div>
+        <div class="content">
+            <h3>Manoj</h3>
+            <p>Very happy with service. Booking was made pre-covid and agent kept in contact over a three year period. Responsive service. Value for money.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="image">
+            <img src="{% static 'images\reviewboy.jpg' %}" alt="">
+        </div>
+        <div class="content">
+            <h3>Raju</h3>
+            <p> It was a family trip , overall good experience,hotels booked were very clean and staffs were good , polite. Cab driver also very good.Food ...</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="image">
+            <img src="{% static 'images\reviewboy.jpg' %}" alt="">
+        </div>
+        <div class="content">
+            <h3>Rahil</h3>
+            <p>Excellent trip AF travel is best hotel and traveller Travel trangle is best service and good communication</p>
+                
+                <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</section>
+
+<!-- review section ends --> {% endcomment %}
+
+
+
+<!-- contact section starts  -->
+
+<section id="contact" class="contact">
+
+
+<div class="row">
+
+<div class="contact-info">
+
+    <div class="box">
+        <h3> <i class="fas fa-home"></i> address </h3>
+        <p>banglore, <br>
+        Kranataka, <br>
+        560026.</p>
+    </div>
+
+    <div class="box">
+        <h3> <i class="fas fa-envelope"></i> e-mail </h3>
+        <p>afaffu@gmail.com</p>
+    </div>
+
+    <div class="box">
+        <h3> <i class="fas fa-phone"></i> phone </h3>
+        <p>91+8310933643</p>
+    </div>
+
+</div>
+
+<div class="contact-form-container">
+
+    <form action="{% url 'contact' %}" method="post">
+        {% csrf_token %}
+
+        <h3>get in touch with our team</h3>
+
+        <div class="inputBox">
+            <input type="text" placeholder="fullname" name="fullname">
+            <input type="email" placeholder="email" name="email">
+        </div>
+
+        <textarea name="msgcontact" id="message" cols="30" rows="05" placeholder="message"></textarea>
+
+        <input type="submit" value="message">
+
+    </form>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- contact section ends -->
+
+<section class="newsletter">
+
+<h1>sign up 25% discount</h1>
+
+<p>The 25% discount will be given on all india tour. By Explore india.....starting soon advance booking open</p>
+
+<form action="">
+    <input type="email" placeholder="enter your email">
+    <input type="submit" value="sign up">
+</form>
+
+</section>
+
+<section class="footer">
+
+<h1 class="credit">created by <span>afnan</span> | all rights reserved.</h1>
+
+<div class="icons">
+    <a href="https://www.facebook.com/" target="_blank" ><i class="fab fa-facebook-f"></i> </a>
+    <a href="https://twitter.com/home" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    
+</div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="{% static 'js/travels.js' %}"></script>
+
+    
+</body>
+</html>
